@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Concept Kitchen â€” Brand Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Palette */
+            --copper: #C67C4E;
+            --copper-light: #D4956A;
+            --charcoal: #2A2A2A;
+            --charcoal-soft: #3D3D3D;
+            
+            /* Secondary Palette */
+            --cream: #F5F0E8;
+            --cream-warm: #EDE5D8;
+            --sage: #7D9B76;
+            --sage-light: #9DB896;
+            
+            /* Accents */
+            --citrus: #E8A84C;
+            --tomato: #D85A4A;
+            
+            /* Neutrals */
+            --paper: #FDFBF7;
+            --ink: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .brand-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: var(--copper);
+        }
+
+        .logo-wordmark {
+            font-family: 'Bitter', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .logo-wordmark span {
+            color: var(--copper);
+        }
+
+        .tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--copper);
+            font-weight: 500;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 32px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--cream-warm);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--copper);
+            border-radius: 50%;
+        }
+
+        /* Color Palette Section */
+        .color-section {
+            margin-bottom: 80px;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .palette-group h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--charcoal-soft);
+            margin-bottom: 16px;
+        }
+
+        .color-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .color-chip {
+            flex: 1;
+            aspect-ratio: 1.2;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-chip:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .color-chip .color-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(4px);
+        }
+
+        .color-chip .color-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        .color-chip .color-hex {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--charcoal-soft);
+        }
+
+        .chip-copper { background: var(--copper); }
+        .chip-charcoal { background: var(--charcoal); }
+        .chip-cream { background: var(--cream); border: 1px solid var(--cream-warm); }
+        .chip-sage { background: var(--sage); }
+        .chip-citrus { background: var(--citrus); }
+        .chip-tomato { background: var(--tomato); }
+
+        /* Typography Section */
+        .typography-section {
+            margin-bottom: 80px;
+        }
+
+        .type-samples {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-samples::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--copper) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .type-sample {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--cream-warm);
+        }
+
+        .type-sample:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .type-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--copper);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .type-headline {
+            font-family: 'Bitter', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .type-subhead {
+            font-family: 'Bitter', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: var(--charcoal-soft);
+            line-height: 1.3;
+        }
+
+        .type-body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .type-handwritten {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--copper);
+            transform: rotate(-1deg);
+            display: inline-block;
+        }
+
+        .font-specs {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .font-spec {
+            font-size: 0.8rem;
+            color: var(--charcoal-soft);
+            background: var(--paper);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* Recipe Card Mockup */
+        .mockup-section {
+            margin-bottom: 80px;
+        }
+
+        .recipe-card-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .recipe-card {
+            background: var(--paper);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--cream-warm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recipe-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--copper), var(--citrus));
+        }
+
+        .recipe-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .recipe-card h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .recipe-card .difficulty {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: var(--sage);
+            background: rgba(125, 155, 118, 0.15);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .recipe-card p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .ingredients-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .ingredients-list li {
+            font-size: 0.9rem;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--cream-warm);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ingredients-list li::before {
+            content: 'â—†';
+            color: var(--copper);
+            font-size: 0.6rem;
+        }
+
+        .recipe-card .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--copper);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .recipe-card .cta:hover {
+            background: var(--charcoal);
+            transform: translateX(4px);
+        }
+
+        /* Social Post Mockup */
+        .social-mockup {
+            background: var(--charcoal);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+        }
+
+        .social-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .social-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--copper), var(--citrus));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .social-handle {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .social-handle span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .social-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-content .highlight {
+            color: var(--citrus);
+        }
+
+        .social-image {
+            background: linear-gradient(135deg, var(--charcoal-soft), var(--charcoal));
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-image .quote {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 16px;
+        }
+
+        .social-image .attribution {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: var(--copper);
+        }
+
+        /* Logo Variations */
+        .logo-section {
+            margin-bottom: 80px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .logo-variant {
+            padding: 48px 32px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+        }
+
+        .logo-variant.light {
+            background: var(--cream);
+        }
+
+        .logo-variant.dark {
+            background: var(--charcoal);
+        }
+
+        .logo-variant.copper {
+            background: var(--copper);
+        }
+
+        .logo-mark {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-mark svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-variant .variant-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 8px;
+        }
+
+        .logo-variant.light .variant-label {
+            color: var(--charcoal-soft);
+        }
+
+        .logo-variant.dark .variant-label,
+        .logo-variant.copper .variant-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Brand Statement */
+        .brand-statement {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, var(--copper) 0%, transparent 50%);
+            opacity: 0.15;
+        }
+
+        .brand-statement blockquote {
+            font-family: 'Bitter', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .brand-statement blockquote span {
+            color: var(--citrus);
+        }
+
+        .brand-statement .philosophy {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .brand-statement .signature {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--copper);
+            margin-top: 32px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 0;
+            border-top: 2px solid var(--cream-warm);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            color: var(--charcoal-soft);
+        }
+
+        .footer .brand-small {
+            font-family: 'Bitter', serif;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand-header,
+        .color-section,
+        .typography-section,
+        .mockup-section,
+        .logo-section,
+        .brand-statement {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .palette-grid,
+            .recipe-card-demo,
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-wordmark {
+                font-size: 2.5rem;
+            }
+
+            .type-headline {
+                font-size: 2rem;
+            }
+
+            .brand-statement blockquote {
+                font-size: 1.75rem;
+            }
+
+            .brand-statement {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="brand-header">
+            <h1 class="logo-wordmark">the concept <span>kitchen</span></h1>
+            <p class="tagline">Anybody can cook.</p>
+        </header>
+
+        <!-- Color Palette -->
+        <section class="color-section">
+            <h2 class="section-header">Color Palette</h2>
+            <div class="palette-grid">
+                <div class="palette-group">
+                    <h4>Primary Colors</h4>
+                    <div class="color-row">
+                        <div class="color-chip chip-copper">
+                            <div class="color-info">
+                                <div class="color-name">Copper</div>
+                                <div class="color-hex">#C67C4E</div>
+                            </div>
+                        </div>
+                        <div class="color-chip chip-charcoal">
+                            <div class="color-info">
+                                <div class="color-name">Charcoal</div>
+                                <div class="color-hex">#2A2A2A</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-chip chip-cream">
+                            <div class="color-info">
+                                <div class="color-name">Cream</div>
+                                <div class="color-hex">#F5F0E8</div>
+                            </div>
+                        </div>
+                        <div class="color-chip chip-sage">
+                            <div class="color-info">
+                                <div class="color-name">Sage</div>
+                                <div class="color-hex">#7D9B76</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="palette-group">
+                    <h4>Accent Colors</h4>
+                    <div class="color-row">
+                        <div class="color-chip chip-citrus">
+                            <div class="color-info">
+                                <div class="color-name">Citrus</div>
+                                <div class="color-hex">#E8A84C</div>
+                            </div>
+                        </div>
+                        <div class="color-chip chip-tomato">
+                            <div class="color-info">
+                                <div class="color-name">Tomato</div>
+                                <div class="color-hex">#D85A4A</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="typography-section">
+            <h2 class="section-header">Typography</h2>
+            <div class="type-samples">
+                <div class="type-sample">
+                    <div class="type-label">Headlines â€” Bitter</div>
+                    <div class="type-headline">Cook up something brilliant.</div>
+                    <div class="type-subhead">AI workflows for the rest of us.</div>
+                    <div class="font-specs">
+                        <span class="font-spec">Bitter â€¢ Serif â€¢ 700</span>
+                        <span class="font-spec">Use for: Titles, Headers, Key statements</span>
+                    </div>
+                </div>
+                <div class="type-sample">
+                    <div class="type-label">Body Text â€” DM Sans</div>
+                    <p class="type-body">You don't need to be a software developer to build powerful AI workflows. Just like you don't need culinary school to feed your family something delicious. The tools are there. The ingredients are accessible. You just need someone to show you around the kitchen.</p>
+                    <div class="font-specs">
+                        <span class="font-spec">DM Sans â€¢ Sans-serif â€¢ 400/500</span>
+                        <span class="font-spec">Use for: Paragraphs, UI text, Descriptions</span>
+                    </div>
+                </div>
+                <div class="type-sample">
+                    <div class="type-label">Accent â€” Caveat</div>
+                    <p class="type-handwritten">fresh from the concept kitchen âœ¦</p>
+                    <div class="font-specs">
+                        <span class="font-spec">Caveat â€¢ Handwritten â€¢ 500</span>
+                        <span class="font-spec">Use for: Annotations, Taglines, Personal touches</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mockups -->
+        <section class="mockup-section">
+            <h2 class="section-header">In Action</h2>
+            <div class="recipe-card-demo">
+                <!-- Recipe Card Style Content -->
+                <div class="recipe-card">
+                    <div class="recipe-card-header">
+                        <h3>Workflow Recipe #12</h3>
+                        <span class="difficulty">Beginner</span>
+                    </div>
+                    <p>Turn voice notes into polished blog posts using just three AI tools. No coding required â€” just your ideas and 15 minutes.</p>
+                    <ul class="ingredients-list">
+                        <li>Whisper API (transcription)</li>
+                        <li>Claude (editing & structure)</li>
+                        <li>Notion (publishing)</li>
+                        <li>Your voice & ideas</li>
+                    </ul>
+                    <a href="#" class="cta">Get the recipe â†’</a>
+                </div>
+
+                <!-- Social Post Style -->
+                <div class="social-mockup">
+                    <div class="social-header">
+                        <div class="social-avatar">CK</div>
+                        <div class="social-handle">
+                            The Concept Kitchen
+                            <span>@conceptkitchen</span>
+                        </div>
+                    </div>
+                    <p class="social-content">
+                        Hot take: You don't need to understand <span class="highlight">how</span> the oven works to bake bread.
+                        <br><br>
+                        Same with AI. You don't need to understand transformers to transform your workflow.
+                        <br><br>
+                        <span class="highlight">#AnybodyCanCook</span>
+                    </p>
+                    <div class="social-image">
+                        <p class="quote">"Anybody can cook."</p>
+                        <p class="attribution">â€” Chef Gusteau (and this guy)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logo Variations -->
+        <section class="logo-section">
+            <h2 class="section-header">Logo Concepts</h2>
+            <div class="logo-grid">
+                <div class="logo-variant light">
+                    <div class="logo-mark">
+                        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Pot/container shape -->
+                            <rect x="15" y="30" width="50" height="35" rx="4" fill="#2A2A2A"/>
+                            <!-- Handle left -->
+                            <rect x="8" y="38" width="10" height="8" rx="2" fill="#C67C4E"/>
+                            <!-- Handle right -->
+                            <rect x="62" y="38" width="10" height="8" rx="2" fill="#C67C4E"/>
+                            <!-- Steam/ideas rising -->
+                            <path d="M30 25 Q33 18 30 12" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M40 22 Q43 14 40 8" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M50 25 Q53 18 50 12" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <!-- Code bracket hint inside pot -->
+                            <text x="40" y="52" font-family="monospace" font-size="16" fill="#F5F0E8" text-anchor="middle">&lt;/&gt;</text>
+                        </svg>
+                    </div>
+                    <span class="variant-label">Light Background</span>
+                </div>
+                <div class="logo-variant dark">
+                    <div class="logo-mark">
+                        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="30" width="50" height="35" rx="4" fill="#F5F0E8"/>
+                            <rect x="8" y="38" width="10" height="8" rx="2" fill="#C67C4E"/>
+                            <rect x="62" y="38" width="10" height="8" rx="2" fill="#C67C4E"/>
+                            <path d="M30 25 Q33 18 30 12" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M40 22 Q43 14 40 8" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M50 25 Q53 18 50 12" stroke="#C67C4E" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <text x="40" y="52" font-family="monospace" font-size="16" fill="#2A2A2A" text-anchor="middle">&lt;/&gt;</text>
+                        </svg>
+                    </div>
+                    <span class="variant-label">Dark Background</span>
+                </div>
+                <div class="logo-variant copper">
+                    <div class="logo-mark">
+                        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="30" width="50" height="35" rx="4" fill="#FDFBF7"/>
+                            <rect x="8" y="38" width="10" height="8" rx="2" fill="#2A2A2A"/>
+                            <rect x="62" y="38" width="10" height="8" rx="2" fill="#2A2A2A"/>
+                            <path d="M30 25 Q33 18 30 12" stroke="#FDFBF7" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M40 22 Q43 14 40 8" stroke="#FDFBF7" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <path d="M50 25 Q53 18 50 12" stroke="#FDFBF7" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <text x="40" y="52" font-family="monospace" font-size="16" fill="#2A2A2A" text-anchor="middle">&lt;/&gt;</text>
+                        </svg>
+                    </div>
+                    <span class="variant-label">Brand Color</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Statement -->
+        <section class="brand-statement">
+            <blockquote>"Chefs have training. <span>Cooks</span> have heart."</blockquote>
+            <p class="philosophy">The Concept Kitchen is for everyone who's been told they need credentials to create. For the curious ones who learn by doing, not by degree. In the age of AI, the tools are finally accessible. The only thing missing is someone to show you around.</p>
+            <p class="signature">â€” Welcome to the kitchen.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><span class="brand-small">The Concept Kitchen</span> â€” Brand Identity Mockup v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
+
