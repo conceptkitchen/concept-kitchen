@@ -2,9 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import pg from 'pg';
 import { Resend } from 'resend';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import 'dotenv/config';
 
 import { welcomeSequence, getEmailForStep, renderEmail } from './emails/welcome-sequence.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const { Pool } = pg;
@@ -19,16 +24,11 @@ const pool = new Pool({
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  methods: ['GET', 'POST']
-}));
+app.use(cors());
 app.use(express.json());
 
-// Health check
-app.get('/', (req, res) => {
-  res.json({ status: 'ok', service: 'concept-kitchen-backend' });
-});
+// Serve static files (frontend)
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Subscribe endpoint
 app.post('/api/subscribe', async (req, res) => {
@@ -219,8 +219,17 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
+// Catch-all: serve index.html for any non-API routes (SPA-style)
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  }
+});
+
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🍳 Concept Kitchen backend running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🍳 Concept Kitchen running on port ${PORT}`);
+  console.log(`   Frontend: http://localhost:${PORT}`);
+  console.log(`   API: http://localhost:${PORT}/api/*`);
 });

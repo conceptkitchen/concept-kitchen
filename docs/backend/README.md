@@ -1,17 +1,17 @@
-# The Concept Kitchen — Backend
+# The Concept Kitchen — Full Stack App
 
-Email subscription and automation backend.
+Everything runs on Replit: frontend, backend, database.
 
 ## Stack
 - **Runtime:** Node.js on Replit
 - **Database:** PostgreSQL (Replit DB)
 - **Email:** Resend API
-- **Frontend:** GitHub Pages
+- **Frontend:** Static HTML served by Express
 
 ## Setup
 
 ### 1. Create Replit Project
-- Import from GitHub or create new Node.js repl
+- Import this repo from GitHub
 - Enable PostgreSQL in the Database tab
 
 ### 2. Environment Variables
@@ -22,7 +22,6 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 DATABASE_URL=<from Replit DB tab>
 FROM_EMAIL=hi@concept.kitchen
 FROM_NAME=RJ from The Concept Kitchen
-FRONTEND_URL=https://conceptkitchen.github.io
 CRON_SECRET=<random string for cron auth>
 ```
 
@@ -34,15 +33,8 @@ Run the schema in `db/schema.sql` via Replit's SQL console.
 2. Verify your domain (concept.kitchen)
 3. Get API key
 
-### 5. Connect Frontend
-Update the form on GitHub Pages to POST to your Replit URL:
-```javascript
-fetch('https://your-repl.replit.app/api/subscribe', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email, name })
-})
-```
+### 5. Deploy
+Just hit "Run" — Replit serves both the frontend and API.
 
 ## API Endpoints
 

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Ask for What You Want — The Concept Kitchen</title>
+    <meta name="description" content="A free guide to clear communication — with AI, your team, and everyone else. The skill that makes AI actually useful.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Brand Colors */
+            --copper: #C67C4E;
+            --copper-light: #D4956A;
+            --copper-dark: #A66840;
+            --charcoal: #2A2A2A;
+            --charcoal-soft: #3D3D3D;
+            --cream: #F5F0E8;
+            --cream-warm: #EDE5D8;
+            --sage: #7D9B76;
+            --sage-light: #9DB896;
+            --citrus: #E8A84C;
+            --tomato: #D85A4A;
+            --paper: #FDFBF7;
+            --ink: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--paper);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--paper);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        /* Subtle texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .landing-container {
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Logo */
+        .landing-logo {
+            margin-bottom: 40px;
+        }
+
+        .landing-logo a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .landing-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .landing-logo-text {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+
+        .landing-logo-text em {
+            font-style: normal;
+            color: var(--copper);
+        }
+
+        /* Content */
+        .landing-tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: var(--copper);
+            margin-bottom: 12px;
+        }
+
+        .landing-headline {
+            font-family: 'Bitter', serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .landing-subhead {
+            font-size: 1.15rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        /* Bullets */
+        .landing-bullets {
+            text-align: left;
+            background: var(--cream);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+
+        .landing-bullets-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .landing-bullets ul {
+            list-style: none;
+        }
+
+        .landing-bullets li {
+            font-size: 1rem;
+            color: var(--charcoal-soft);
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.5;
+        }
+
+        .landing-bullets li:not(:last-child) {
+            border-bottom: 1px solid var(--cream-warm);
+        }
+
+        .landing-bullets li::before {
+            content: '✓';
+            color: var(--copper);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Form */
+        .landing-form {
+            margin-bottom: 16px;
+        }
+
+        .landing-form form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .landing-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid var(--cream-warm);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .landing-form input:focus {
+            outline: none;
+            border-color: var(--copper);
+        }
+
+        .landing-form button {
+            background: var(--copper);
+            color: white;
+            padding: 16px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .landing-form button:hover {
+            background: var(--charcoal);
+            transform: translateY(-1px);
+        }
+
+        .landing-trust {
+            font-size: 0.9rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 40px;
+        }
+
+        /* Quote */
+        .landing-quote {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--charcoal-soft);
+            padding: 20px 0;
+            border-top: 1px solid var(--cream-warm);
+        }
+
+        .landing-quote em {
+            color: var(--charcoal);
+            font-style: normal;
+        }
+
+        /* Footer */
+        .landing-footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: var(--charcoal-soft);
+        }
+
+        .landing-footer a {
+            color: var(--copper);
+            text-decoration: none;
+        }
+
+        .landing-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Success State */
+        .landing-success {
+            display: none;
+            background: var(--sage);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .landing-success.show {
+            display: block;
+        }
+
+        .landing-success h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .landing-success p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .landing-form form {
+                flex-direction: column;
+            }
+
+            .landing-form button {
+                width: 100%;
+            }
+
+            .landing-bullets {
+                padding: 20px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .landing-container {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Logo -->
+        <div class="landing-logo">
+            <a href="index.html">
+                <img src="logo-icon.png" alt="The Concept Kitchen">
+                <span class="landing-logo-text">the concept <em>kitchen</em></span>
+            </a>
+        </div>
+
+        <!-- Content -->
+        <p class="landing-tagline">Free Guide</p>
+        <h1 class="landing-headline">How to Ask for What You Want</h1>
+        <p class="landing-subhead">A free guide to clear communication — with AI, your team, and everyone else.</p>
+
+        <!-- Bullets -->
+        <div class="landing-bullets">
+            <p class="landing-bullets-title">Inside the guide:</p>
+            <ul>
+                <li>Why most requests fail (and the 3 mistakes almost everyone makes)</li>
+                <li>The 4-part framework for asking clearly — works on AI and humans</li>
+                <li>Copy-paste instructions that make AI ask YOU the right questions</li>
+                <li>A cheat sheet you can screenshot and use forever</li>
+            </ul>
+        </div>
+
+        <!-- Success Message (hidden by default) -->
+        <div class="landing-success" id="successMessage">
+            <h3>Check your inbox! ✓</h3>
+            <p>Your guide is on the way. If you don't see it in 5 minutes, check your spam folder.</p>
+        </div>
+
+        <!-- Form -->
+        <div class="landing-form" id="formContainer">
+            <form id="signupForm" action="#" method="POST">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <button type="submit">Send Me the Guide</button>
+            </form>
+        </div>
+
+        <p class="landing-trust">Free. No spam. Just stuff that works.</p>
+
+        <!-- Quote -->
+        <p class="landing-quote">"This isn't a prompt engineering guide. It's a <em>communication</em> guide. AI is just where you'll practice."</p>
+
+        <!-- Footer -->
+        <div class="landing-footer">
+            <p><a href="index.html">The Concept Kitchen</a> — Anybody can cook.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const form = document.getElementById('signupForm');
+        const formContainer = document.getElementById('formContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = form.querySelector('input').value;
+            
+            // TODO: Connect to your email service (ConvertKit, Beehiiv, etc.)
+            // Example ConvertKit:
+            // fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ api_key: 'YOUR_API_KEY', email: email })
+            // });
+
+            // Show success message
+            formContainer.style.display = 'none';
+            successMessage.classList.add('show');
+            
+            // For now, log email (remove in production)
+            console.log('Email submitted:', email);
+        });
+    </script>
+</body>
+</html>
