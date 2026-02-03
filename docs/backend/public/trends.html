@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Scout — The Concept Kitchen</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bitter:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --copper: #C67C4E;
+            --copper-light: #D4956A;
+            --charcoal: #2A2A2A;
+            --cream: #F5F0E8;
+            --sage: #7D9B76;
+            --paper: #FDFBF7;
+            --tomato: #D85A4A;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+        }
+        
+        .header h1 span { color: var(--copper); }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            background: var(--copper);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover { background: var(--copper-light); }
+        .btn.secondary { background: var(--charcoal); border: 1px solid var(--cream); }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-btn {
+            background: var(--cream);
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover { border-color: var(--copper); }
+        .filter-btn.active { background: var(--copper); color: white; }
+        
+        .filter-btn .count {
+            background: rgba(0,0,0,0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 0.3rem;
+        }
+        
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .trend-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--cream);
+            transition: all 0.2s;
+        }
+        
+        .trend-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .trend-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .trend-platform {
+            background: var(--charcoal);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .trend-platform.instagram { background: #E1306C; }
+        .trend-platform.tiktok { background: #000; }
+        .trend-platform.youtube { background: #FF0000; }
+        .trend-platform.twitter { background: #1DA1F2; }
+        .trend-platform.linkedin { background: #0077B5; }
+        
+        .trend-views {
+            color: var(--copper);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .trend-title {
+            font-family: 'Bitter', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .trend-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .trend-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .trend-tag {
+            background: var(--cream);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--charcoal);
+        }
+        
+        .trend-tag.hook { background: #E8F5E9; color: #2E7D32; }
+        .trend-tag.format { background: #E3F2FD; color: #1565C0; }
+        
+        .trend-insights {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .trend-insights h4 {
+            font-size: 0.8rem;
+            color: var(--copper);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .trend-insights p {
+            font-size: 0.85rem;
+            color: var(--charcoal);
+        }
+        
+        .trend-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--cream);
+        }
+        
+        .trend-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--cream);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        
+        .trend-actions button:hover { background: var(--cream); }
+        .trend-actions button.save { border-color: var(--sage); color: var(--sage); }
+        .trend-actions button.save:hover { background: var(--sage); color: white; }
+        .trend-actions button.archive { border-color: var(--tomato); color: var(--tomato); }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active { display: flex; }
+        
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal h2 {
+            font-family: 'Bitter', serif;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal input, .modal textarea, .modal select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--cream);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        
+        .modal textarea { min-height: 100px; resize: vertical; }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .modal-actions button { flex: 1; }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+        
+        .empty-state h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .trends-grid { grid-template-columns: 1fr; }
+            .header { padding: 1rem; }
+            .header h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🔥 Trend <span>Scout</span></h1>
+        <div class="header-actions">
+            <button class="btn secondary" onclick="location.href='/'">← Home</button>
+            <button class="btn" onclick="openAddModal()">+ Add Trend</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-status="all">All <span class="count" id="count-all">0</span></button>
+            <button class="filter-btn" data-status="new">New <span class="count" id="count-new">0</span></button>
+            <button class="filter-btn" data-status="saved">Saved <span class="count" id="count-saved">0</span></button>
+            <button class="filter-btn" data-status="used">Used <span class="count" id="count-used">0</span></button>
+            <button class="filter-btn" data-status="archived">Archived <span class="count" id="count-archived">0</span></button>
+        </div>
+        
+        <div class="trends-grid" id="trends-grid">
+            <!-- Trends loaded here -->
+        </div>
+        
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <h3>No trends yet</h3>
+            <p>Add your first trend or wait for the daily research at 8 AM.</p>
+            <button class="btn" style="margin-top: 1rem;" onclick="openAddModal()">+ Add Trend</button>
+        </div>
+    </div>
+    
+    <!-- Add Trend Modal -->
+    <div class="modal-overlay" id="add-modal">
+        <div class="modal">
+            <h2>Add a Trend</h2>
+            <form id="add-form">
+                <input type="url" name="url" placeholder="URL (optional)">
+                <select name="platform">
+                    <option value="">Select Platform</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="twitter">Twitter/X</option>
+                    <option value="linkedin">LinkedIn</option>
+                </select>
+                <input type="text" name="title" placeholder="Title / Hook" required>
+                <textarea name="description" placeholder="Description / What makes it work"></textarea>
+                <input type="text" name="views_estimate" placeholder="Views estimate (e.g., 500K, 1.2M)">
+                <textarea name="notes" placeholder="Your notes"></textarea>
+                <div class="modal-actions">
+                    <button type="button" class="btn secondary" onclick="closeAddModal()">Cancel</button>
+                    <button type="submit" class="btn">Add Trend</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentFilter = 'all';
+        let trends = [];
+        
+        // Load trends
+        async function loadTrends() {
+            try {
+                const status = currentFilter === 'all' ? '' : currentFilter;
+                const response = await fetch(`/api/trends?status=${status}`);
+                const data = await response.json();
+                
+                trends = data.trends;
+                updateCounts(data.counts);
+                renderTrends();
+            } catch (error) {
+                console.error('Error loading trends:', error);
+            }
+        }
+        
+        function updateCounts(counts) {
+            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+            document.getElementById('count-all').textContent = total;
+            document.getElementById('count-new').textContent = counts.new || 0;
+            document.getElementById('count-saved').textContent = counts.saved || 0;
+            document.getElementById('count-used').textContent = counts.used || 0;
+            document.getElementById('count-archived').textContent = counts.archived || 0;
+        }
+        
+        function renderTrends() {
+            const grid = document.getElementById('trends-grid');
+            const empty = document.getElementById('empty-state');
+            
+            if (trends.length === 0) {
+                grid.style.display = 'none';
+                empty.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            empty.style.display = 'none';
+            
+            grid.innerHTML = trends.map(trend => `
+                <div class="trend-card" data-id="${trend.id}">
+                    <div class="trend-header">
+                        <span class="trend-platform ${trend.platform || ''}">${trend.platform || 'Unknown'}</span>
+                        ${trend.views_estimate ? `<span class="trend-views">${trend.views_estimate} views</span>` : ''}
+                    </div>
+                    <h3 class="trend-title">${escapeHtml(trend.title || 'Untitled')}</h3>
+                    ${trend.description ? `<p class="trend-description">${escapeHtml(trend.description)}</p>` : ''}
+                    <div class="trend-meta">
+                        ${trend.hook_type ? `<span class="trend-tag hook">${trend.hook_type.replace('_', ' ')}</span>` : ''}
+                        ${trend.format ? `<span class="trend-tag format">${trend.format.replace('_', ' ')}</span>` : ''}
+                    </div>
+                    ${trend.how_to_apply ? `
+                        <div class="trend-insights">
+                            <h4>How to Apply to TCK</h4>
+                            <p>${escapeHtml(trend.how_to_apply)}</p>
+                        </div>
+                    ` : ''}
+                    <div class="trend-actions">
+                        ${trend.url ? `<button onclick="window.open('${trend.url}', '_blank')">View</button>` : ''}
+                        <button class="save" onclick="updateStatus(${trend.id}, 'saved')">Save</button>
+                        <button onclick="updateStatus(${trend.id}, 'used')">Mark Used</button>
+                        <button class="archive" onclick="updateStatus(${trend.id}, 'archived')">Archive</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function updateStatus(id, status) {
+            try {
+                await fetch(`/api/trends/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                loadTrends();
+            } catch (error) {
+                console.error('Error updating trend:', error);
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.status;
+                loadTrends();
+            });
+        });
+        
+        // Add modal
+        function openAddModal() {
+            document.getElementById('add-modal').classList.add('active');
+        }
+        
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.remove('active');
+            document.getElementById('add-form').reset();
+        }
+        
+        document.getElementById('add-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                await fetch('/api/trends', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                closeAddModal();
+                loadTrends();
+            } catch (error) {
+                console.error('Error adding trend:', error);
+            }
+        });
+        
+        // Close modal on overlay click
+        document.getElementById('add-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeAddModal();
+        });
+        
+        // Initial load
+        loadTrends();
+    </script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import 'dotenv/config';
 
 import { welcomeSequence, getEmailForStep, renderEmail } from './emails/welcome-sequence.js';
+import { createTrendRoutes } from './trends/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,6 +30,14 @@ app.use(express.json());
 
 // Serve static files (frontend)
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Trends API routes
+app.use('/api/trends', createTrendRoutes(pool));
+
+// Trends dashboard route
+app.get('/trends', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'trends.html'));
+});
 
 // Subscribe endpoint
 app.post('/api/subscribe', async (req, res) => {
