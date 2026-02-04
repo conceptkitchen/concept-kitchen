@@ -335,7 +335,8 @@
         <!-- Success Message (hidden by default) -->
         <div class="landing-success" id="successMessage">
             <h3>Check your inbox! ✓</h3>
-            <p>Your guide is on the way. If you don't see it in 5 minutes, check your spam folder.</p>
+            <p>Your guide is on the way. If you don't see it in a few minutes, check your spam folder.</p>
+            <p style="margin-top: 12px; font-size: 0.9rem; opacity: 0.9;">Can't wait? <a href="the-art-of-asking.pdf" style="color: white; text-decoration: underline;">Download it now →</a></p>
         </div>
 
         <!-- Form -->
@@ -363,24 +364,39 @@
         const formContainer = document.getElementById('formContainer');
         const successMessage = document.getElementById('successMessage');
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = form.querySelector('input').value;
+            const button = form.querySelector('button');
             
-            // TODO: Connect to your email service (ConvertKit, Beehiiv, etc.)
-            // Example ConvertKit:
-            // fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ api_key: 'YOUR_API_KEY', email: email })
-            // });
-
-            // Show success message
-            formContainer.style.display = 'none';
-            successMessage.classList.add('show');
+            // Disable button while submitting
+            button.disabled = true;
+            button.textContent = 'Sending...';
             
-            // For now, log email (remove in production)
-            console.log('Email submitted:', email);
+            try {
+                // Submit to Kit (ConvertKit) form
+                const response = await fetch('https://api.convertkit.com/v3/forms/9051861/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        api_key: 'VqYK8PBlmWyhxgRzhPsX2g',
+                        email: email
+                    })
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    formContainer.style.display = 'none';
+                    successMessage.classList.add('show');
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                button.disabled = false;
+                button.textContent = 'Send Me the Guide';
+                alert('Something went wrong. Please try again.');
+            }
         });
     </script>
 </body>
