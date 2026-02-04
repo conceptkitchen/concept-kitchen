@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Ask for What You Want — The Concept Kitchen</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --copper: #C67C4E;
+            --copper-light: #D4956A;
+            --charcoal: #2A2A2A;
+            --charcoal-soft: #3D3D3D;
+            --cream: #F5F0E8;
+            --cream-warm: #EDE5D8;
+            --sage: #7D9B76;
+            --paper: #FDFBF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 8.5in;
+            min-height: 11in;
+            padding: 0.75in;
+            margin: 0 auto;
+            background: var(--paper);
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Cover Page */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: calc(11in - 1.5in);
+        }
+
+        .cover-logo {
+            width: 80px;
+            margin-bottom: 40px;
+        }
+
+        .cover-tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--copper);
+            margin-bottom: 20px;
+        }
+
+        .cover h1 {
+            font-family: 'Bitter', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .cover h1 span {
+            color: var(--copper);
+        }
+
+        .cover-subtitle {
+            font-size: 1.3rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 60px;
+        }
+
+        .cover-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--copper);
+            padding: 20px 40px;
+            border-left: 4px solid var(--copper);
+            background: var(--cream);
+            border-radius: 0 8px 8px 0;
+            max-width: 500px;
+        }
+
+        .cover-footer {
+            margin-top: auto;
+            padding-top: 40px;
+        }
+
+        .cover-footer-text {
+            font-family: 'Bitter', serif;
+            font-size: 1rem;
+            color: var(--charcoal-soft);
+        }
+
+        .cover-footer-text em {
+            color: var(--copper);
+            font-style: normal;
+        }
+
+        /* Content Pages */
+        h2 {
+            font-family: 'Bitter', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--copper);
+        }
+
+        h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--copper);
+            margin: 28px 0 12px 0;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .highlight {
+            background: var(--cream);
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border-left: 4px solid var(--copper);
+        }
+
+        .highlight p {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        /* Framework Box */
+        .framework-box {
+            background: var(--charcoal);
+            color: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .framework-box h3 {
+            color: var(--copper);
+            margin-top: 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .framework-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .framework-number {
+            background: var(--copper);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .framework-content {
+            flex: 1;
+        }
+
+        .framework-label {
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .framework-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 24px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin: 24px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .code-label {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: var(--copper);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Example Dialogue */
+        .dialogue {
+            margin: 24px 0;
+        }
+
+        .dialogue-item {
+            display: flex;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .dialogue-speaker {
+            font-weight: 700;
+            color: var(--copper);
+            min-width: 40px;
+        }
+
+        .dialogue-text {
+            flex: 1;
+            color: var(--charcoal-soft);
+        }
+
+        .dialogue-text em {
+            color: var(--sage);
+            font-style: italic;
+        }
+
+        /* Cheat Sheet */
+        .cheat-sheet {
+            background: var(--cream);
+            border: 2px solid var(--copper);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .cheat-sheet h3 {
+            color: var(--charcoal);
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+        }
+
+        .cheat-section {
+            margin: 20px 0;
+        }
+
+        .cheat-section-title {
+            font-weight: 700;
+            color: var(--copper);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .cheat-list {
+            list-style: none;
+        }
+
+        .cheat-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--cream-warm);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .cheat-list li::before {
+            content: '□';
+            color: var(--copper);
+            font-weight: bold;
+        }
+
+        .cheat-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 2px solid var(--copper);
+        }
+
+        .cheat-footer p {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: var(--copper);
+            margin: 0;
+        }
+
+        .cheat-footer .small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--charcoal-soft);
+            margin-top: 8px;
+        }
+
+        /* CTA Page */
+        .cta-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: calc(11in - 1.5in);
+        }
+
+        .cta-page h2 {
+            border: none;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-page p {
+            max-width: 500px;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--copper);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin-top: 24px;
+        }
+
+        .cta-tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: var(--copper);
+            margin-top: 40px;
+        }
+
+        /* Page Footer */
+        .page-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--charcoal-soft);
+            border-top: 1px solid var(--cream-warm);
+        }
+
+        .page-footer-brand {
+            font-family: 'Bitter', serif;
+            font-weight: 600;
+        }
+
+        .page-footer-brand em {
+            color: var(--copper);
+            font-style: normal;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Screen preview */
+        @media screen {
+            body {
+                background: #e0e0e0;
+                padding: 20px;
+            }
+            .page {
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Cover -->
+    <div class="page cover">
+        <img src="logo-icon.png" alt="The Concept Kitchen" class="cover-logo">
+        <p class="cover-tagline">The Concept Kitchen</p>
+        <h1>How to Ask for <span>What You Want</span></h1>
+        <p class="cover-subtitle">And Actually Get It</p>
+        
+        <div class="cover-quote">
+            "Vague in. Garbage out.<br>Clear in. Magic out."
+        </div>
+        
+        <div class="cover-footer">
+            <p class="cover-footer-text">the concept <em>kitchen</em></p>
+        </div>
+    </div>
+
+    <!-- Page 2: The Truth -->
+    <div class="page">
+        <h2>The Truth No One Tells You</h2>
+        
+        <p class="lead">There's a skill that makes AI (and people) actually useful. Nobody teaches it. But once you see it, you can't unsee it.</p>
+        
+        <p>It's this: <strong>how to ask for what you want.</strong> Clearly. Specifically. In a way that actually gets results.</p>
+        
+        <p>Most of us were never taught this. We say what we <em>mean</em>, but they hear something else. We get frustrated. They get confused. The result is garbage.</p>
+        
+        <p>AI just made this gap impossible to ignore.</p>
+        
+        <div class="highlight">
+            <p>Vague in. Garbage out.</p>
+        </div>
+        
+        <p>But here's the good news: you don't have to master this skill overnight. You can make AI do the heavy lifting for you.</p>
+        
+        <h3>This guide gives you three things:</h3>
+        <p><strong>1. The framework</strong> — so you understand why this works</p>
+        <p><strong>2. The instruction</strong> — copy-paste it and let AI ask YOU the right questions</p>
+        <p><strong>3. The shortcut</strong> — just attach this file and go</p>
+        
+        <div class="page-footer">
+            <span class="page-footer-brand">the concept <em>kitchen</em></span>
+            <span>Page 2</span>
+        </div>
+    </div>
+
+    <!-- Page 3: The Framework -->
+    <div class="page">
+        <h2>The Framework</h2>
+        
+        <p class="lead">Every clear request has four parts:</p>
+        
+        <div class="framework-box">
+            <h3>The Four Elements</h3>
+            
+            <div class="framework-item">
+                <div class="framework-number">1</div>
+                <div class="framework-content">
+                    <div class="framework-label">CONTEXT</div>
+                    <p class="framework-desc">Who you are. What's the situation. What you've already tried.</p>
+                </div>
+            </div>
+            
+            <div class="framework-item">
+                <div class="framework-number">2</div>
+                <div class="framework-content">
+                    <div class="framework-label">SPECIFICS</div>
+                    <p class="framework-desc">What exactly you want. Format. Length. Goal.</p>
+                </div>
+            </div>
+            
+            <div class="framework-item">
+                <div class="framework-number">3</div>
+                <div class="framework-content">
+                    <div class="framework-label">CONSTRAINTS</div>
+                    <p class="framework-desc">What to avoid. Tone. Style. Boundaries.</p>
+                </div>
+            </div>
+            
+            <div class="framework-item">
+                <div class="framework-number">4</div>
+                <div class="framework-content">
+                    <div class="framework-label">EXAMPLE</div>
+                    <p class="framework-desc">Show what good looks like. (When helpful.)</p>
+                </div>
+            </div>
+        </div>
+        
+        <p><strong>That's it.</strong> Context. Specifics. Constraints. Example.</p>
+        
+        <p>But here's the problem: most people forget this in the moment. Or they're too tired to think it through. Or they just want the answer fast.</p>
+        
+        <div class="highlight">
+            <p>That's why you don't do the work. You make AI do it.</p>
+        </div>
+        
+        <div class="page-footer">
+            <span class="page-footer-brand">the concept <em>kitchen</em></span>
+            <span>Page 3</span>
+        </div>
+    </div>
+
+    <!-- Page 4: The Recipe -->
+    <div class="page">
+        <h2>The Recipe: Make AI Ask YOU</h2>
+        
+        <p class="lead">Instead of crafting the perfect prompt, flip it. Give AI this instruction and let it pull the right information out of you.</p>
+        
+        <span class="code-label">Copy this into any AI chat:</span>
+        <div class="code-block">Before responding to any request I give you:
+
+1. Ask me clarifying questions to understand the full context
+2. Keep asking until you have:
+   - My role / who I am
+   - The situation / background
+   - The goal / what I'm trying to achieve
+   - The audience / who this is for
+   - Any constraints / what to avoid
+3. Summarize what you understood and ask me to confirm
+4. Only after I confirm, give me your response
+
+If I'm being vague, push back and ask for specifics. Don't guess.</div>
+        
+        <h3>How to Use It</h3>
+        
+        <p><strong>Option 1: Custom Instructions (ChatGPT)</strong><br>
+        Go to Settings → Personalization → Custom Instructions → Paste it in the "How would you like ChatGPT to respond?" box.</p>
+        
+        <p><strong>Option 2: Start of Any Conversation</strong><br>
+        Just paste the instruction at the beginning of a new chat.</p>
+        
+        <p><strong>Option 3: Attach This Guide</strong><br>
+        Upload this PDF to your conversation. Tell AI: "Use this as your guide."</p>
+        
+        <div class="page-footer">
+            <span class="page-footer-brand">the concept <em>kitchen</em></span>
+            <span>Page 4</span>
+        </div>
+    </div>
+
+    <!-- Page 5: What Happens Next -->
+    <div class="page">
+        <h2>What Happens Next</h2>
+        
+        <p class="lead">Here's what a conversation looks like when AI asks the right questions:</p>
+        
+        <div class="dialogue">
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">You:</span>
+                <span class="dialogue-text">"I need help with an email."</span>
+            </div>
+            
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">AI:</span>
+                <span class="dialogue-text">"Sure. A few questions first:<br>
+                - Who's the email to?<br>
+                - What's the context — why are you writing?<br>
+                - What tone do you want?<br>
+                - How long should it be?<br>
+                - Anything I should avoid?"</span>
+            </div>
+            
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">You:</span>
+                <span class="dialogue-text">"It's to my team. We had a project delay. I want to explain without blaming anyone. Keep it short, no corporate jargon."</span>
+            </div>
+            
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">AI:</span>
+                <span class="dialogue-text">"Got it. So you want a short email to your team about the project delay, direct but not blaming, no corporate jargon. Correct?"</span>
+            </div>
+            
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">You:</span>
+                <span class="dialogue-text">"Yes."</span>
+            </div>
+            
+            <div class="dialogue-item">
+                <span class="dialogue-speaker">AI:</span>
+                <span class="dialogue-text"><em>Delivers something actually useful.</em></span>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <p>No more garbage outputs. No more "that's not what I meant." No more starting over.</p>
+        </div>
+        
+        <h3>Why This Works</h3>
+        
+        <p>You're not learning a new skill. You're <strong>outsourcing the skill to AI.</strong></p>
+        
+        <p>The framework (Context, Specifics, Constraints, Examples) is how good communicators think. But you don't have to hold it in your head. The instruction makes AI think that way FOR you.</p>
+        
+        <p>And when AI asks you clarifying questions, it forces YOU to get clear — which makes everything better.</p>
+        
+        <div class="page-footer">
+            <span class="page-footer-brand">the concept <em>kitchen</em></span>
+            <span>Page 5</span>
+        </div>
+    </div>
+
+    <!-- Page 6: Cheat Sheet -->
+    <div class="page">
+        <h2>The Cheat Sheet</h2>
+        
+        <p class="lead">Save this. Screenshot it. Keep it handy.</p>
+        
+        <div class="cheat-sheet">
+            <h3>HOW TO ASK FOR WHAT YOU WANT</h3>
+            
+            <div class="cheat-section">
+                <div class="cheat-section-title">The Framework (when you're doing it manually)</div>
+                <ul class="cheat-list">
+                    <li>CONTEXT — Who you are, what's happening</li>
+                    <li>SPECIFICS — Exactly what you want</li>
+                    <li>CONSTRAINTS — What to avoid</li>
+                    <li>EXAMPLE — Show what good looks like</li>
+                </ul>
+            </div>
+            
+            <div class="cheat-section">
+                <div class="cheat-section-title">The Shortcut (let AI do it)</div>
+                <p style="font-size: 0.9rem; color: var(--charcoal-soft); margin-bottom: 12px;">Paste this into Custom Instructions or any chat:</p>
+                <p style="font-size: 0.85rem; color: var(--charcoal); background: white; padding: 12px; border-radius: 6px; font-family: monospace; line-height: 1.6;">
+                    "Before responding to any request:<br>
+                    1. Ask me clarifying questions<br>
+                    2. Get: role, situation, goal, audience, constraints<br>
+                    3. Summarize and confirm before responding<br>
+                    4. Push back if I'm vague"
+                </p>
+            </div>
+            
+            <div class="cheat-footer">
+                <p>Vague in. Garbage out.<br>Clear in. Magic out.</p>
+                <p class="small">concept.kitchen</p>
+            </div>
+        </div>
+        
+        <div class="page-footer">
+            <span class="page-footer-brand">the concept <em>kitchen</em></span>
+            <span>Page 6</span>
+        </div>
+    </div>
+
+    <!-- Page 7: CTA -->
+    <div class="page cta-page">
+        <h2>This is one recipe.<br>There are more.</h2>
+        
+        <p>If you want to keep building with AI — without the overwhelm, without the jargon, without feeling like you need a computer science degree — The Concept Kitchen is where it happens.</p>
+        
+        <p><strong>Build the systems that save you time, make you money, and get you out of the weeds.</strong></p>
+        
+        <a href="https://concept.kitchen" class="cta-button">Visit concept.kitchen</a>
+        
+        <p class="cta-tagline">Anybody can cook. Including you.</p>
+        
+        <div class="cover-footer">
+            <p class="cover-footer-text">the concept <em>kitchen</em></p>
+        </div>
+    </div>
+
+</body>
+</html>
