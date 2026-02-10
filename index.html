@@ -936,7 +936,10 @@
                 
                 <div class="hero-signup">
                     <p class="hero-signup-label"><strong>Free: "How to Ask for What You Want"</strong> — The one skill that makes AI actually useful.</p>
-                    <script async data-uid="ca95ea1af0" src="https://conceptkitchen.kit.com/ca95ea1af0/index.js"></script>
+                    <form class="hero-signup-form" action="https://app.kit.com/forms/9051861/subscriptions" method="POST" data-sv-form="9051861" data-uid="ca95ea1af0">
+                        <input type="email" name="email_address" placeholder="your@email.com" required>
+                        <button type="submit">Get the Guide</button>
+                    </form>
                     <p class="hero-signup-note">Free. No spam. Unsubscribe anytime.</p>
                 </div>
                 
@@ -1084,7 +1087,10 @@
             <div class="signup-box">
                 <h2>Start with one skill.</h2>
                 <p>There's a skill that makes AI (and people) actually useful. It's how to ask for what you want — clearly, specifically, in a way that gets results. This free guide shows you the framework and gives you copy-paste instructions to make it work.</p>
-                <script async data-uid="ca95ea1af0" src="https://conceptkitchen.kit.com/ca95ea1af0/index.js"></script>
+                <form class="signup-form" action="https://app.kit.com/forms/9051861/subscriptions" method="POST" data-sv-form="9051861" data-uid="ca95ea1af0">
+                    <input type="email" name="email_address" placeholder="your@email.com" required>
+                    <button type="submit">Get the Guide</button>
+                </form>
                 <p class="signup-note">Free. No spam. Unsubscribe anytime.</p>
             </div>
         </div>
@@ -1123,53 +1129,7 @@
             }
         });
 
-        // Email signup handling - connects to /api/subscribe
-        async function handleSubscribe(form, button) {
-            const email = form.querySelector('input[type="email"]').value;
-            const originalText = button.textContent;
-            
-            button.textContent = 'Sending...';
-            button.disabled = true;
-            
-            try {
-                const response = await fetch('/api/subscribe', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source: 'website' })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    button.textContent = '✓ Check your inbox!';
-                    button.style.background = '#7D9B76'; // sage green
-                    form.querySelector('input').value = '';
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.style.background = '';
-                        button.disabled = false;
-                    }, 3000);
-                } else {
-                    throw new Error(data.error || 'Something went wrong');
-                }
-            } catch (error) {
-                button.textContent = 'Try again';
-                button.style.background = '#D85A4A'; // tomato red
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                    button.disabled = false;
-                }, 2000);
-            }
-        }
-
-        // Attach to all signup forms
-        document.querySelectorAll('.signup-form, .hero-signup-form').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                handleSubscribe(form, form.querySelector('button'));
-            });
-        });
+        // Kit form submission is handled natively via form POST to Kit's endpoint.
     </script>
 </body>
 </html>
