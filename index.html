@@ -590,6 +590,33 @@
             font-weight: 600;
         }
 
+        /* ==================== TEACHING ==================== */
+        .teaching {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .teaching-content h2 {
+            font-family: 'Bitter', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        @media (max-width: 900px) {
+            .teaching-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
         /* ==================== CREDIBILITY ==================== */
         .credibility {
             padding: 80px 0;
@@ -930,7 +957,7 @@
             <div class="about-grid">
                 <div class="about-image">
                     <div class="about-image-frame">
-                        <img src="rj-photo.jpeg" alt="RJ Moscardon" style="width: 100%; border-radius: 12px; display: block;">
+                        <img src="assets/images/rj-teaching-workshop-1.jpg" alt="RJ teaching a live AI workshop" style="width: 100%; border-radius: 12px; display: block;">
                     </div>
                     <div class="about-badge">Proof it's possible.</div>
                 </div>
@@ -1023,6 +1050,37 @@
         </div>
     </section>
 
+    <!-- Credibility / Teaching Section -->
+    <section class="teaching" id="teaching">
+        <div class="container">
+            <div class="teaching-grid">
+                <div class="teaching-image">
+                    <img src="assets/images/rj-teaching-workshop-2.jpg" alt="RJ leading an AI workshop with a room full of builders" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
+                </div>
+                <div class="teaching-content">
+                    <p class="section-label">From the kitchen</p>
+                    <h2 class="section-title" style="text-align: left;">I teach people who <span style="color: var(--copper);">build things.</span></h2>
+                    <p style="font-size: 1.1rem; color: var(--charcoal-soft); line-height: 1.8; margin-top: 20px;">Business owners. Nonprofit staff. Construction professionals. Data scientists. Engineers. Chamber of commerce members. Technical or not, the recipes work the same.</p>
+                    <p style="font-size: 1.1rem; color: var(--charcoal-soft); line-height: 1.8; margin-top: 16px;">No slides full of jargon. No "just figure it out." Real workshops where people walk in unsure and walk out building.</p>
+                    <div class="about-stats" style="justify-content: flex-start; border-top: none; padding-top: 24px;">
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">People trained</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Hackathons won</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">CS degrees</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Email Signup Section -->
     <section class="signup" id="signup">
         <div class="container">
@@ -1049,7 +1107,7 @@
                 <div class="footer-social">
                     <a href="https://linkedin.com/in/rjmoscardon" target="_blank">LinkedIn</a>
                     <a href="https://twitter.com/" target="_blank">Twitter</a>
-                    <a href="https://instagram.com/" target="_blank">Instagram</a>
+                    <a href="https://instagram.com/the_concept.kitchen" target="_blank">Instagram</a>
                 </div>
             </div>
             <div class="footer-bottom">
